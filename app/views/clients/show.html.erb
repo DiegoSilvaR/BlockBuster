@@ -1,0 +1,8 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @client %>
+
+<div>
+  <%= link_to "Volver a Clientes", clients_path %>
+  <%= button_to "Eliminar Cliente", @client, method: :delete %>
+</div>
