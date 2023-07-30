@@ -22,7 +22,7 @@ api_key = '00a19588b0b75f8f1b5ccda7c57cce5a'
 end
 
 # Seed de Películas
-200.times do
+100.times do
   movie_data = fetch_random_movie_data(api_key)
 
   movie = Movie.new(name: movie_data[:title], cover_image_url: movie_data[:cover_image_url]) # Guardamos la URL en lugar de la imagen
