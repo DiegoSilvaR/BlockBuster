@@ -14,15 +14,14 @@
     }
 
     #welcome {
-      background-image: url('/assets/background_image.jpg');
-      background-size: cover;
+      background-image: <%= image_tag("background_image.jpg", size: "cover") %>;
       background-position: center;
       height: 89vh;
       width: 99vw;
       display: flex;
       justify-content: center;
       align-items: flex-end;
-      position: relative; /* Agregar posición relativa */
+      position: relative;
     }
 
     #welcome h1 {
