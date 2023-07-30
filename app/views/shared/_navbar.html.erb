@@ -1,17 +1,52 @@
-<nav class="navbar navbar-expand-lg bg-primary navbar-dark ">
-  <div class="container-fluid">
-    <%= link_to 'BlockBuster', root_path, class: 'navbar-brand' %>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <%= link_to 'Clientes', clients_path, class: 'nav-link'%>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Peliculas', movies_path, class: 'nav-link' %>
-        </li>
+<style>
+  /* Agregamos la fuente Bungee Spice al estilo del Navbar */
+  .navbar-brand {
+    font-family: 'Bungee Spice', cursive;
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap" rel="stylesheet">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="z-index: 10000;">
+    <div class="container">
+      <%= link_to raw('<i class="fa-solid fa-film fa-2x text-warning"></i>'), root_path, class: 'navbar-brand fs-4 me-3' %>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 fs-3">
+          <li class="nav-item">
+            <%= link_to 'Home', root_path, class: 'nav-link active' %>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="moviesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Películas
+            </a>
+            <ul class="dropdown-menu bg-dark" aria-labelledby="moviesDropdown">
+              <li><%= link_to 'Nueva Película', new_movie_path, class: 'dropdown-item' %></li>
+              <li><%= link_to 'Lista de Películas', movies_path, class: 'dropdown-item' %></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="clientsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Clientes
+            </a>
+            <ul class="dropdown-menu bg-dark" aria-labelledby="clientsDropdown">
+              <li><%= link_to 'Nuevo Cliente', new_client_path, class: 'dropdown-item' %></li>
+              <li><%= link_to 'Lista de Clientes', clients_path, class: 'dropdown-item' %></li>
+            </ul>
+          </li>
+        </ul>
+        <% if controller_name == "movies" %>
+          <form class="d-flex" action="<%= search_movies_path %>" method="get">
+            <input class="form-control me-2" type="search" name="search" placeholder="Buscar películas" aria-label="Buscar películas">
+            <button class="btn btn-outline-success" type="submit">Buscar</button>
+          </form>
+        <% end %>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
+
+

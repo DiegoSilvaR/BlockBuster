@@ -1,18 +1,34 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+require 'httparty'
+require 'json'
 require 'faker'
-100.times do
-  Movie.create!([
-    { name: Faker::Movie.title }
-  ])
+
+def fetch_random_movie_data(api_key)
+  url = "https://api.themoviedb.org/3/discover/movie?api_key=#{api_key}&language=en-US&sort_by=popularity.desc&page=#{rand(1..100)}"
+  response = HTTParty.get(url)
+  results = JSON.parse(response.body)['results']
+  random_movie = results.sample
+
+  { title: random_movie['title'], cover_image_url: "https://image.tmdb.org/t/p/original#{random_movie['poster_path']}" }
 end
-10.times do
-  Client.create!([
-    { name: Faker::Name.name, age: Faker::Number.between(from: 18, to: 100) }
-  ])
+
+api_key = '00a19588b0b75f8f1b5ccda7c57cce5a'
+
+# Seed de Clientes
+30.times do
+  Client.create!(
+    name: Faker::Name.name,
+    age: Faker::Number.between(from: 18, to: 100)
+  )
+end
+
+# Seed de Películas
+100.times do
+  movie_data = fetch_random_movie_data(api_key)
+
+  movie = Movie.new(name: movie_data[:title], cover_image_url: movie_data[:cover_image_url]) # Guardamos la URL en lugar de la imagen
+
+  # Asociar una película aleatoria a un cliente aleatorio
+  #movie.client = Client.all.sample
+
+  movie.save!
 end

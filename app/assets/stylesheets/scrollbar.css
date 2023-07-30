@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>BlockBuster</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-  <style>
-
-
 .scrollbar-juicy-peach::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
     background-color: #F5F5F5;
@@ -441,27 +431,3 @@
 .scrollbar-near-moon {
     scrollbar-color: #b490ca #F5F5F5;
 }
-
-  .navbar {
-    font-family: 'Bungee Spice', cursive;
-  }
-  body {
-  background: radial-gradient(circle, #fff, #272727);
-}
-</style>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
-  </head>
-
-  <body>
-    <%= render "shared/navbar" %>
-    <div class="container-fluid">
-    <script src="https://kit.fontawesome.com/19e2a818fa.js" crossorigin="anonymous"></script>
-
-      <%= yield %>
-    </div>
-  </body>
-</html>

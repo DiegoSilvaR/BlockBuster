@@ -1,9 +1,13 @@
+<div class="col-3 py-2">
+  <div class="card card-dark">
+    <% if movie.cover_image_url.present? %>
+      <%= image_tag movie.cover_image_url, class: "card-img-top" %>
+    <% else %>
+      <%= image_tag 'default_movie_cover.png', width: 200, height: 300, class: "card-img-top" %>
+    <% end %>
 
-  <div class="col-4 py-2">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title"><%= movie.name %></h5>
-        <%= link_to "Ver Pelicula", movie, class: "btn btn-primary" %>
-      </div>
+    <div class="card-footer btn-outline-danger d-flex justify-content-center">
+      <%= link_to "Ver Pelicula", movie, class: "btn fw-bold" %>
     </div>
   </div>
+</div>

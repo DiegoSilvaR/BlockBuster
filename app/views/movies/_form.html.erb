@@ -21,6 +21,12 @@
     <%= form.select :client_id, options_for_select(@clients) %>
   </div>
 
+  <!-- Nuevo campo para la URL de la imagen -->
+  <div>
+    <%= form.label :cover_image_url, "URL de la Caratula", style: "display: block" %>
+    <%= form.text_field :cover_image_url %>
+  </div>
+
   <div>
     <%= form.submit "Crear Pelicula"%>
   </div>

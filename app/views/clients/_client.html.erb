@@ -4,7 +4,7 @@
     <td><%= client.name %></td>
     <td><%= client.age %></td>
     <td><%= client.movies.last %></td>
-    <td><%= link_to "Ver Cliente", client %></td>
-    <td><%= link_to "Editar Cliente", edit_client_path(client) %></td>
+    <td><%= link_to raw('<i class="fa-solid fa-eye"></i>'), client, title: "Ver Cliente" %></td>
+    <td><%= link_to raw('<i class="fa-solid fa-edit"></i>'), edit_client_path(client), title: "Editar Cliente" %></td>
   </tr>
 </div>

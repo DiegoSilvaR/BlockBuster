@@ -1,27 +1,23 @@
-<p style="color: green"><%= notice %></p>
+<div class="container"style="margin-top: 6%">
 
-<div class="container">
-  <h1>Clientes</h1>
-
-  <%= link_to "Nuevo Cliente", new_client_path, class:"btn btn-sm rounded-pill btn-primary mb-3" %>
-
-  <div id="clients">
-    <table class="table table-responsive table-striped rounded table-bordered">
-      <thead class="table-dark">
-        <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Nombre</th>
-          <th scope="col">Edad</th>
-          <th scope="col">Pelicula</th>
-          <th scope="col" colspan="3"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @clients.each do |client| %>
-          <%= render client %>
-
-        <% end %>
-      </tbody>
-    </table>
+  <div id="clients" class="form-control bg-light shadow-lg p-4">
+    <div class="table-responsive scrollbar scrollbar-young-passion " style="max-height: 400px; ">
+      <table class="table table-striped rounded table-bordered">
+        <thead class="table-dark sticky-top">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Edad</th>
+            <th scope="col">Pelicula</th>
+            <th scope="col" colspan="3">Acciones</th> <!-- Cambio de título para las acciones -->
+          </tr>
+        </thead>
+        <tbody>
+          <% @clients.each do |client| %>
+            <%= render client %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

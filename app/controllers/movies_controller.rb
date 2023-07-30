@@ -1,10 +1,17 @@
 class MoviesController < ApplicationController
-  before_action :set_movie, only: %i[ show edit update destroy ]
-  before_action :set_clients, only: %i[ new edit create destroy update]
+  before_action :set_movie, only: [:show, :edit, :update, :destroy]
+  before_action :set_clients, only: [:new, :edit, :create, :destroy, :update]
+
   # GET /movies or /movies.json
   def index
     @movies = Movie.all
+    @movies = @movies.paginate(page: params[:page], per_page: 4)
   end
+  def search
+    @movies = Movie.where("name ILIKE ?", "%#{params[:search]}%").paginate(page: params[:page], per_page: 4)
+    render :index
+  end
+
 
   # GET /movies/1 or /movies/1.json
   def show
@@ -58,15 +65,18 @@ class MoviesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_movie
-      @movie = Movie.find(params[:id])
-    end
-    def set_clients
-      @clients = Client.all.pluck :name, :id
-    end
-    # Only allow a list of trusted parameters through.
-    def movie_params
-      params.require(:movie).permit(:name, :client_id)
-    end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_movie
+    @movie = Movie.find(params[:id])
+  end
+
+  def set_clients
+    @clients = Client.all.pluck(:name, :id)
+  end
+
+  # Only allow a list of trusted parameters through.
+  def movie_params
+    params.require(:movie).permit(:name, :client_id, :cover_image_url)
+  end
 end
